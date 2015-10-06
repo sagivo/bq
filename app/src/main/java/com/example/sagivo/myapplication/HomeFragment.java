@@ -7,9 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * Created by sagivo on 10/6/15.
- */
 public class HomeFragment extends Fragment {
     @Nullable
     @Override
