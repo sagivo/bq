@@ -1,11 +1,7 @@
 package com.example.sagivo.myapplication;
 
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -36,7 +32,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //set current fragment
-        ProfileFragment fragment = new ProfileFragment();
+        StoreListFragment fragment = new StoreListFragment(); //SET DEFAULT SCREEN HERE
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
 
@@ -79,14 +75,13 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        FragmentManager fragmentManager = getFragmentManager();
 
         if (id == R.id.nav_camara) {
             ProfileFragment fragment = new ProfileFragment();
             Bundle args = new Bundle();
             args.putInt("foo", 1);
             fragment.setArguments(args);
-
-            FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
 
             Toast.makeText(MainActivity.this, "foo", Toast.LENGTH_SHORT).show();
@@ -94,13 +89,13 @@ public class MainActivity extends AppCompatActivity
 
             HomeFragment fragment = new HomeFragment();
             Bundle args = new Bundle();
-            FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
 
             Toast.makeText(MainActivity.this, "foo", Toast.LENGTH_SHORT).show();
 
-        } else if (id == R.id.nav_slideshow) {
-
+        } else if (id == R.id.nav_map) {
+            MapFragment fragment = new MapFragment();
+            fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
