@@ -86,7 +86,6 @@ public class MainActivity extends AppCompatActivity
 
             Toast.makeText(MainActivity.this, "foo", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_gallery) {
-
             HomeFragment fragment = new HomeFragment();
             Bundle args = new Bundle();
             fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
@@ -94,7 +93,7 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(MainActivity.this, "foo", Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.nav_map) {
-            MapFragment fragment = new MapFragment();
+            StoreListFragment fragment = new StoreListFragment();
             fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
         } else if (id == R.id.nav_manage) {
 
