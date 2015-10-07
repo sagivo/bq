@@ -2,6 +2,8 @@ package com.example.sagivo.myapplication;
 
 import android.app.Fragment;
 import android.app.ListFragment;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -14,21 +16,50 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class StoreListFragment extends ListFragment{
-    static final String[] FRUITS = new String[] { "Apple", "Avocado", "Banana",
-            "Blueberry", "Coconut", "Durian", "Guava", "Kiwifruit",
-            "Jackfruit", "Mango", "Olive", "Pear", "Sugar-apple", "Koko", "Loko!" };
+import com.baoyz.swipemenulistview.SwipeMenu;
+import com.baoyz.swipemenulistview.SwipeMenuCreator;
+import com.baoyz.swipemenulistview.SwipeMenuItem;
+import com.baoyz.swipemenulistview.SwipeMenuListView;
 
+public class StoreListFragment extends ListFragment{
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_stores_list ,container,false);
-
         StoreAdapter sa = new StoreAdapter(getActivity(), Store.getStores());
 
-        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, FRUITS);
+
+        SwipeMenuCreator creator = new SwipeMenuCreator() {
+
+            @Override
+            public void create(SwipeMenu menu) {
+                // create "open" item
+                SwipeMenuItem openItem = new SwipeMenuItem(menu.getContext());
+                // set item background
+                openItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9, 0xCE)));
+                openItem.setWidth(300);
+                openItem.setTitle("Favorite");
+                openItem.setIcon(android.R.drawable.star_on);
+                openItem.setTitleSize(18);
+                openItem.setTitleColor(Color.WHITE);
+                menu.addMenuItem(openItem);
+
+
+                // create "delete" item
+                SwipeMenuItem deleteItem = new SwipeMenuItem(menu.getContext());
+                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9, 0x3F, 0x25)));
+                deleteItem.setWidth(300);
+                deleteItem.setTitle("Call");
+                deleteItem.setIcon(android.R.drawable.stat_sys_phone_call);
+                menu.addMenuItem(deleteItem);
+
+            }
+        };
+
+        SwipeMenuListView listView = (SwipeMenuListView) v.findViewById(16908298);
+        Log.w("aaa", listView.toString());
+        listView.setMenuCreator(creator);
+
         setListAdapter(sa);
-
-
         return v;
     }
 
@@ -38,4 +69,4 @@ public class StoreListFragment extends ListFragment{
 
     }
 
-    }
+}
