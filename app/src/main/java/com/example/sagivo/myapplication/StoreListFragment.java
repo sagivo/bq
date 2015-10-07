@@ -17,7 +17,7 @@ import android.widget.Toast;
 public class StoreListFragment extends ListFragment{
     static final String[] FRUITS = new String[] { "Apple", "Avocado", "Banana",
             "Blueberry", "Coconut", "Durian", "Guava", "Kiwifruit",
-            "Jackfruit", "Mango", "Olive", "Pear", "Sugar-apple" };
+            "Jackfruit", "Mango", "Olive", "Pear", "Sugar-apple", "Koko", "Loko!" };
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
