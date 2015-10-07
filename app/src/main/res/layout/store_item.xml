@@ -3,14 +3,20 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" android:text="store name" android:id="@+id/store_name" />
-
     <ImageView
         android:layout_width="fill_parent"
-        android:layout_height="140dp" android:src="@drawable/profile" android:id="@+id/store_picture"
+        android:layout_height="200dp" android:src="@drawable/profile" android:id="@+id/store_picture"
         android:scaleType="centerCrop" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="store name" android:id="@+id/store_name"
+        android:layout_marginTop="-28dp"
+        android:background="#FFFFFF"
+        android:alpha="0.8"
+        android:textSize="22sp"
+        />
 
 
 </LinearLayout>
