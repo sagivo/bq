@@ -23,8 +23,10 @@ public class StoreListFragment extends ListFragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_stores_list ,container,false);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, FRUITS);
-        setListAdapter(adapter);
+        StoreAdapter sa = new StoreAdapter(getActivity(), Store.getStores());
+
+        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, FRUITS);
+        setListAdapter(sa);
 
 
         return v;
