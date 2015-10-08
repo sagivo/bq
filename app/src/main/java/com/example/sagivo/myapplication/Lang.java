@@ -2,6 +2,7 @@
 //package com.example.sagivo.myapplication;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -9,35 +10,40 @@ import java.util.HashSet;
 
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 public class Lang {
     public static void main(String[] args)
     {
 
-        System.out.println("Hello, World!");
+        System.out.println("---start---");
+
+        ArrayList<OrderItem> orders = new ArrayList<OrderItem>();
 
         String req = "Hello, can i please get one burger, 2 chicken sandwich and an apple pie?";
 
         String[] _ignore = new String[]{"hi", "hello", "how are you", "thank you", "can", "i", "a", "an", "get", "please", "and", "thanks", "bye" };
         Set<String> ignore= new HashSet<String>(Arrays.asList(_ignore));
 
-        String[] _food = new String[]{ "Whopper", "burger", "cheeseburger", "chicken sandwich", "fish sandwich"};
-        Set<String> food= new HashSet<String>(Arrays.asList(_ignore));
+        Item[] foodItems = {
+                new Item("burger", "", 5.99, "b", new String[]{"beef burger", "hamburger", "Whopper"}),
+                new Item("chicken burger", "", 4.99, "b", new String[]{"chicken sandwich"}),
 
-        String[] _dtinks = new String[]{"coke", "pepsi", "cola", "kola", "smoothie", "coffee", "sprite"};
-        Set<String> dtinks= new HashSet<String>(Arrays.asList(_ignore));
+                new Item("coke", "", 2.99, "d", new String[]{"cola", "coka cola", "coce", "pepsi"}),
+                new Item("sprite", "", 3.99, "d", new String[]{}),
 
-        String[] _sides = new String[]{"coke", "pepsi", "cola", "kola", "smoothie", "coffee", "sprite"};
-        Set<String> sides= new HashSet<String>(Arrays.asList(_ignore));
+                new Item("fries", "", 1.99, "s", new String[]{"pie"}),
+                new Item("apple pie", "", 2.99, "s", new String[]{"pie"}),
+                new Item("cheese cake", "", 6.99, "s", new String[]{"cheesecake"})
+        };
 
-        String[] _salads = new String[]{"caesar salad"};
-        Set<String> salads= new HashSet<String>(Arrays.asList(_ignore));
+        HashMap<String, Item> items = new HashMap<String, Item>();
+        for (Item i: foodItems) {
+            System.out.println(i);
+        }
 
-        String[] _desserts = new String[]{"apple pie", "sundae pie"};
-        Set<String> desserts= new HashSet<String>(Arrays.asList(_ignore));
-
-        Hashtable<String, Integer> nums = new Hashtable<String, Integer>();
+        HashMap<String, Integer> nums = new HashMap<String, Integer>();
         nums.put("one",1); nums.put("1",1); nums.put("single",1);
         nums.put("two",2); nums.put("2",2); nums.put("double",2); nums.put("twice",2);
         nums.put("tree",3); nums.put("3",3); nums.put("triple",3);
@@ -50,10 +56,50 @@ public class Lang {
 
         //replace characters, leave only lowwercase, numbers and spaces
         req = req.toLowerCase().replaceAll("[^a-z0-9\\s]+","");
-        arr = req.split("");
+        String[] arr = req.split(" ");
 
-        System.out.println(arr);
-        System.out.println("End!");
+        for(int i = 0; i < arr.length; i++){
+
+        }
+
+        System.out.println("---end---");
+
+    }
+
+    public class OrderItem {
+        String item;
+        String extra;
+        Integer quantity = 1;
+
+        public OrderItem(String item, Integer quantity, String extra){
+            this.item = item;
+            this.quantity = quantity;
+            this.extra = extra;
+        }
+
+        public String toString(){
+            return Integer.toString(quantity) + " " + item + " " + extra;
+        }
+    }
+
+    public static class Item {
+        String name;
+        String[] aka;
+        String img;
+        String type;
+        double price;
+
+        public Item(String name, String img, double price, String type, String[] aka){
+            this.name = name;
+            this.img = img;
+            this.price = price;
+            this.type = type;
+            this.aka =  new String[aka.length + 1]; this.aka[0] = name; System.arraycopy(aka, 0, this.aka, 1, aka.length);
+        }
+
+        public String toString(){
+            return Double.toString(price) + " " + name + " " + img + " " + type;
+        }
     }
 
 
