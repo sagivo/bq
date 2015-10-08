@@ -65,6 +65,8 @@ public class Lang {
             Item item = map.get(arr[i]);
             if (item != null){
                 OrderItem oi = new OrderItem(item, 1, null);
+                //look for quantity
+                String Integer = nums.get(arr[i-1]);
 
                 orderItems.add(oi);
             }
