@@ -3,9 +3,11 @@ package com.example.sagivo.myapplication;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
@@ -26,7 +28,12 @@ public class HomeFragment extends Fragment {
         ImageView itemIcon2 = new ImageView(this.getActivity());
         itemIcon2.setImageDrawable(getResources().getDrawable(R.drawable.voice));
         SubActionButton button2 = itemBuilder.setContentView(itemIcon2).build();
-
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.w("aaa", "clicked!");
+            }
+        });
         ImageView itemIcon3 = new ImageView(this.getActivity());
         itemIcon3.setImageDrawable(getResources().getDrawable(R.drawable.email));
         SubActionButton button3 = itemBuilder.setContentView(itemIcon3).build();
