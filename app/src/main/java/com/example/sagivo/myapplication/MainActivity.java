@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //set current fragment
-        StoreListFragment fragment = new StoreListFragment(); //SET DEFAULT SCREEN HERE
+        OrderFragment fragment = new OrderFragment(); //SET DEFAULT SCREEN HERE
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
 
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity
 
             Toast.makeText(MainActivity.this, "foo", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_gallery) {
-            HomeFragment fragment = new HomeFragment();
+            OrderFragment fragment = new OrderFragment();
             Bundle args = new Bundle();
             fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
 

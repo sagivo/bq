@@ -28,4 +28,6 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.0.0'
 
     compile 'com.baoyz.swipemenulistview:library:1.3.0'
+
+    compile 'com.yalantis:flipviewpager:1.0.0'
 }
