@@ -28,7 +28,7 @@ public class Lang {
 
         Item[] foodItems = {
                 new Item("burger", "", 5.99, "b", new String[]{"beef burger", "hamburger", "whopper"}),
-                new Item("chicken burger", "", 4.99, "b", new String[]{"chicken sandwich"}),
+                new Item("chicken sandwich", "", 4.99, "b", new String[]{"chicken burger", "chicken"}),
 
                 new Item("coke", "", 2.99, "d", new String[]{"cola", "coka cola", "coce", "pepsi"}),
                 new Item("sprite", "", 3.99, "d", new String[]{}),
@@ -58,6 +58,8 @@ public class Lang {
         req = req.toLowerCase().replaceAll("[^a-z0-9\\s]+","");
         String[] arr = req.split(" ");
 
+        System.out.println(req);
+
         ArrayList<OrderItem> orderItems = new ArrayList<OrderItem>();
 
         for(int i = 0; i < arr.length; i++){
@@ -66,7 +68,8 @@ public class Lang {
             if (item != null){
                 OrderItem oi = new OrderItem(item, 1, null);
                 //look for quantity
-                String Integer = nums.get(arr[i-1]);
+                Integer quantity = nums.get(arr[i-1]);
+                if (quantity!=null) oi.quantity = quantity;
 
                 orderItems.add(oi);
             }
@@ -114,7 +117,7 @@ public class Lang {
         }
 
         public String toString(){
-            return Double.toString(price) + " " + name + " " + img + " " + type + " " + akas();
+            return Double.toString(price) + " " + name + " " + img;// + akas();
         }
 
         public String akas(){
