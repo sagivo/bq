@@ -25,10 +25,7 @@ import java.util.List;
 
 public class OrderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_order ,container,false);
-
-
-
+        View v = inflater.inflate(R.layout.fragment_order, container, false);
 
         List<Friend> list_data = Friend.getAll();
         final ListView friends = (ListView) v.findViewById(R.id.friends);

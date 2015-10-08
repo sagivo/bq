@@ -3,9 +3,13 @@ package com.example.sagivo.myapplication;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
@@ -13,7 +17,7 @@ import com.astuetz.PagerSlidingTabStrip;
 
 public class OrderFragmentTabs extends FragmentActivity{
     OrderAdapter adapter;
-    ViewPager pager;
+    OrderPager pager;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +26,7 @@ public class OrderFragmentTabs extends FragmentActivity{
         // ViewPager and its adapters use support library
         // fragments, so use getSupportFragmentManager.
         adapter = new OrderAdapter(getSupportFragmentManager());
-        pager = (ViewPager) findViewById(R.id.pager);
+        pager = (OrderPager) findViewById(R.id.pager);
         pager.setAdapter(adapter);
 
         PagerSlidingTabStrip tabsStrip = (PagerSlidingTabStrip) findViewById(R.id.pager_title_strip);
@@ -50,4 +54,42 @@ public class OrderFragmentTabs extends FragmentActivity{
         });
 
     }
+
+    public class OrderAdapter extends FragmentStatePagerAdapter {
+        public OrderAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            pager.AllowSwipe = pager.getCurrentItem() != 2;
+
+            switch (position) {
+                case 0: return new HomeFragment();
+                case 1: return new HomeFragment();
+                case 2: return new OrderFragment();
+                default: return new OrderFragment();
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return 4;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0: return "MAIN";
+                case 1:
+                    return "SIDE";
+                case 2:
+                    return "DRINK";
+                default:
+                    return "OTHERS";
+
+            }
+        }
+    }
+
 }

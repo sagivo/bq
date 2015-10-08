@@ -15,7 +15,7 @@
         android:layout_height="48dp">
     </com.astuetz.PagerSlidingTabStrip>
 
-    <android.support.v4.view.ViewPager
+    <com.example.sagivo.myapplication.OrderPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
