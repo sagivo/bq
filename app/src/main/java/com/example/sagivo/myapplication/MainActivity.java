@@ -105,7 +105,13 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_map) {
             StoreListFragment fragment = new StoreListFragment();
-            fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
+
+            android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.frame, fragment);
+            fragmentTransaction.commit();
+
+
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
