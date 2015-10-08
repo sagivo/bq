@@ -9,34 +9,34 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
 
 
-public class OrderFragmentTabs extends FragmentActivity{
+public class OrderFragmentTabs extends Fragment{
     OrderAdapter adapter;
     OrderPager pager;
 
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_tabs_order);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_tabs_order ,container,false);
 
-        // ViewPager and its adapters use support library
-        // fragments, so use getSupportFragmentManager.
-        adapter = new OrderAdapter(getSupportFragmentManager());
-        pager = (OrderPager) findViewById(R.id.pager);
+        adapter = new OrderAdapter(getFragmentManager());
+        pager = (OrderPager) v.findViewById(R.id.pager);
         pager.setAdapter(adapter);
 
-        PagerSlidingTabStrip tabsStrip = (PagerSlidingTabStrip) findViewById(R.id.pager_title_strip);
+        PagerSlidingTabStrip tabsStrip = (PagerSlidingTabStrip) v.findViewById(R.id.pager_title_strip);
         tabsStrip.setViewPager(pager);
         tabsStrip.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             // This method will be invoked when a new page becomes selected.
             @Override
             public void onPageSelected(int position) {
-                Toast.makeText(OrderFragmentTabs.this, "Selected page position: " + position, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(OrderFragmentTabs.this, "Selected page position: " + position, Toast.LENGTH_SHORT).show();
             }
 
             // This method will be invoked when the current page is scrolled
@@ -53,7 +53,9 @@ public class OrderFragmentTabs extends FragmentActivity{
             }
         });
 
+        return v;
     }
+
 
     public class OrderAdapter extends FragmentStatePagerAdapter {
         public OrderAdapter(FragmentManager fm) {
