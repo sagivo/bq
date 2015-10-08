@@ -13,8 +13,17 @@ public class OrderAdapter extends FragmentStatePagerAdapter {
     }
 
     @Override
-    public Fragment getItem(int i) {
-        return new HomeFragment();
+    public Fragment getItem(int position) {
+        switch (position) {
+            case 0: return new HomeFragment();
+            case 1:
+                return new OrderFragment();
+            case 2:
+                return new OrderFragment();
+            default:
+                return new OrderFragment();
+
+        }
     }
 
     @Override

@@ -89,10 +89,15 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(MainActivity.this, "foo", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_gallery) {
             OrderFragment fragment = new OrderFragment();
-            Bundle args = new Bundle();
-            fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
 
-            Toast.makeText(MainActivity.this, "foo", Toast.LENGTH_SHORT).show();
+
+            android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.frame, fragment);
+            fragmentTransaction.commit();
+
+            return true;
+
 
         } else if (id == R.id.nav_map) {
             StoreListFragment fragment = new StoreListFragment();

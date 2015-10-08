@@ -1,6 +1,6 @@
 package com.example.sagivo.myapplication;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.app.ListFragment;
 import android.content.Context;
 import android.os.Bundle;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class OrderFragment extends ListFragment {
+public class OrderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_order ,container,false);
 
