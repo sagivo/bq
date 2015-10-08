@@ -1,6 +1,7 @@
 package com.example.sagivo.myapplication;
 
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -32,9 +33,10 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //set current fragment
-        VoiceOrderFragment fragment = new VoiceOrderFragment(); //SET DEFAULT SCREEN HERE
+        OrderFragmentTabs fragment = new OrderFragmentTabs(); //SET DEFAULT SCREEN HERE
         FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
+        //fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
+        startActivity(new Intent(this, OrderFragmentTabs.class));
 
     }
 

@@ -14,4 +14,13 @@ public class HomeFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_home ,container,false);
         return v;
     }
+
+    public static HomeFragment newInstance(int page) {
+        //Bundle args = new Bundle();
+        //args.putInt(ARG_PAGE, page);
+        HomeFragment fragment = new HomeFragment();
+        //fragment.setArguments(args);
+        return fragment;
+    }
+
 }
