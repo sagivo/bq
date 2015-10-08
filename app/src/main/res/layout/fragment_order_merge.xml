@@ -13,6 +13,7 @@
         android:layout_width="0dp"
         android:layout_weight="1"
         android:contentDescription="left image"
+        android:src="@drawable/b1"
         android:layout_height="wrap_content"
         android:scaleType="fitXY" />
 
@@ -26,6 +27,7 @@
         android:id="@+id/second"
         android:layout_width="0dp"
         android:layout_weight="1"
+        android:src="@drawable/b2"
         android:contentDescription="right image"
         android:layout_height="wrap_content"
         android:scaleType="fitXY" />

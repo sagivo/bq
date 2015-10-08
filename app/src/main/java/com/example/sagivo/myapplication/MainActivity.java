@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //set current fragment
-        OrderFragment fragment = new OrderFragment(); //SET DEFAULT SCREEN HERE
+        VoiceOrderFragment fragment = new VoiceOrderFragment(); //SET DEFAULT SCREEN HERE
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
 
