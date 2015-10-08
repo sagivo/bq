@@ -2,9 +2,9 @@
 //package com.example.sagivo.myapplication;
 
 
+
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -27,7 +27,7 @@ public class Lang {
         Set<String> ignore= new HashSet<String>(Arrays.asList(_ignore));
 
         Item[] foodItems = {
-                new Item("burger", "", 5.99, "b", new String[]{"beef burger", "hamburger", "Whopper"}),
+                new Item("burger", "", 5.99, "b", new String[]{"beef burger", "hamburger", "whopper"}),
                 new Item("chicken burger", "", 4.99, "b", new String[]{"chicken sandwich"}),
 
                 new Item("coke", "", 2.99, "d", new String[]{"cola", "coka cola", "coce", "pepsi"}),
@@ -98,8 +98,17 @@ public class Lang {
         }
 
         public String toString(){
-            return Double.toString(price) + " " + name + " " + img + " " + type;
+            return Double.toString(price) + " " + name + " " + img + " " + type + " " + akas();
         }
+
+        public String akas(){
+            String s = "";
+            for(String str : aka){
+                s += str + ", ";
+            }
+            return s;
+        }
+
     }
 
 
