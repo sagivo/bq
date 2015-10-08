@@ -38,10 +38,10 @@ public class Lang {
                 new Item("cheese cake", "", 6.99, "s", new String[]{"cheesecake"})
         };
 
-        HashMap<String, Item> items = new HashMap<String, Item>();
-        for (Item i: foodItems) {
-            System.out.println(i);
-        }
+        HashMap<String, Item> map = new HashMap<String, Item>();
+        for(Item i: foodItems)
+            for(String name : i.aka)
+                map.put(name, i);
 
         HashMap<String, Integer> nums = new HashMap<String, Integer>();
         nums.put("one",1); nums.put("1",1); nums.put("single",1);
@@ -58,20 +58,33 @@ public class Lang {
         req = req.toLowerCase().replaceAll("[^a-z0-9\\s]+","");
         String[] arr = req.split(" ");
 
-        for(int i = 0; i < arr.length; i++){
+        ArrayList<OrderItem> orderItems = new ArrayList<OrderItem>();
 
+        for(int i = 0; i < arr.length; i++){
+            //look for food
+            Item item = map.get(arr[i]);
+            if (item != null){
+                OrderItem oi = new OrderItem(item, 1, null);
+
+                orderItems.add(oi);
+            }
         }
+
+        //print result
+        for(OrderItem oi:orderItems)
+            System.out.println(oi);
 
         System.out.println("---end---");
 
     }
 
-    public class OrderItem {
-        String item;
-        String extra;
-        Integer quantity = 1;
+    //TODO: REMOVE STATIC
+    public static class OrderItem {
+        public Item item;
+        public String extra;
+        public Integer quantity = 1;
 
-        public OrderItem(String item, Integer quantity, String extra){
+        public OrderItem(Item item, Integer quantity, String extra){
             this.item = item;
             this.quantity = quantity;
             this.extra = extra;
@@ -82,12 +95,13 @@ public class Lang {
         }
     }
 
+    //TODO: REMOVE STATIC
     public static class Item {
-        String name;
-        String[] aka;
-        String img;
-        String type;
-        double price;
+        public String name;
+        public String[] aka;
+        public String img;
+        public String type;
+        public double price;
 
         public Item(String name, String img, double price, String type, String[] aka){
             this.name = name;
