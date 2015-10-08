@@ -50,8 +50,9 @@ public class Lang {
 
         //replace characters, leave only lowwercase, numbers and spaces
         req = req.toLowerCase().replaceAll("[^a-z0-9\\s]+","");
+        arr = req.split("");
 
-        System.out.println(req);
+        System.out.println(arr);
         System.out.println("End!");
     }
 
