@@ -24,6 +24,15 @@ public class OrderAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return "OBJECT " + (position + 1);
+        switch (position) {
+            case 0: return "MAIN";
+            case 1:
+                return "SIDE";
+            case 2:
+                return "DRINK";
+            default:
+                return "OTHERS";
+
+        }
     }
 }

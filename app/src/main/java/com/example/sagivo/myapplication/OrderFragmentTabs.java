@@ -6,11 +6,12 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
 
 
-public class OrderFragmentTabs extends FragmentActivity implements ActionBar.TabListener {
+public class OrderFragmentTabs extends FragmentActivity{
     OrderAdapter adapter;
     ViewPager pager;
 
@@ -25,27 +26,28 @@ public class OrderFragmentTabs extends FragmentActivity implements ActionBar.Tab
         pager.setAdapter(adapter);
 
         PagerSlidingTabStrip tabsStrip = (PagerSlidingTabStrip) findViewById(R.id.pager_title_strip);
-        // Attach the view pager to the tab strip
         tabsStrip.setViewPager(pager);
+        tabsStrip.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
-        //final ActionBar actionBar = getActionBar();
-        //actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+            // This method will be invoked when a new page becomes selected.
+            @Override
+            public void onPageSelected(int position) {
+                Toast.makeText(OrderFragmentTabs.this, "Selected page position: " + position, Toast.LENGTH_SHORT).show();
+            }
 
-        //for (int i = 0; i < 3; i++) { actionBar.addTab(actionBar.newTab().setText("Tab " + (i + 1)));}
-    }
+            // This method will be invoked when the current page is scrolled
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                // Code goes here
+            }
 
-    @Override
-    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
-        Log.w("aaa", "tba selected!!!!");
-    }
-
-    @Override
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
-
-    }
-
-    @Override
-    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
+            // Called when the scroll state changes:
+            // SCROLL_STATE_IDLE, SCROLL_STATE_DRAGGING, SCROLL_STATE_SETTLING
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                // Code goes here
+            }
+        });
 
     }
 }
