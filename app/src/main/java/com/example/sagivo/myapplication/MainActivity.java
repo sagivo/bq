@@ -34,10 +34,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //set current fragment
-        OrderFragmentTabs fragment = new OrderFragmentTabs(); //SET DEFAULT SCREEN HERE
-        FragmentManager fragmentManager = getFragmentManager();
-        //fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
-        //startActivity(new Intent(this, OrderFragmentTabs.class));
+        VoiceOrderFragment fragment = new VoiceOrderFragment(); //SET DEFAULT SCREEN HERE
         android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.replace(R.id.frame, fragment);
@@ -93,6 +90,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_map) {
             fragment = new StoreListFragment();
         } else if (id == R.id.nav_manage) {
+            fragment = new VoiceOrderFragment();
             //Bundle args = new Bundle();
             //args.putInt("foo", 1);
             //fragment.setArguments(args);
