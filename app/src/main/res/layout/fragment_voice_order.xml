@@ -13,12 +13,11 @@
         android:text="Place your order..."
         android:id="@+id/voice_result" />
 
-    <LinearLayout
-        android:id="@+id/list_voice_order"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        ></LinearLayout>
+    <ListView
+        android:id="@+id/voice_order_list_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"></ListView>
+
 
     <android.support.design.widget.FloatingActionButton android:id="@+id/action_fab"
         android:layout_width="wrap_content" android:layout_height="wrap_content"

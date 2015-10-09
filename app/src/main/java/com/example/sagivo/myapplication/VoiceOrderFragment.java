@@ -3,6 +3,8 @@ package com.example.sagivo.myapplication;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.support.v4.app.Fragment;
@@ -10,8 +12,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
@@ -22,20 +27,24 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 
 public class VoiceOrderFragment extends Fragment {
 
     private static final int SPEECH_REQUEST_CODE = 10;
     TextView text_view;
     FloatingActionMenu actionMenu;
+    View v;
 
     public void generateList( String req ){
-        ArrayList<OrderItem> oi = getItems(req);
-
+        ArrayList<OrderItem> orderItems = getItems(req);
+        VoiceOrderAdapter adapter = new VoiceOrderAdapter(getActivity(), orderItems);
+        ListView list = (ListView)v.findViewById(R.id.voice_order_list_view);
+        list.setAdapter(adapter);
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_voice_order ,container,false);
+        v = inflater.inflate(R.layout.fragment_voice_order ,container,false);
 
         text_view = (TextView)v.findViewById(R.id.voice_result);
 
@@ -100,6 +109,25 @@ public class VoiceOrderFragment extends Fragment {
         public VoiceOrderAdapter(Context context, ArrayList<OrderItem> orderItems) {
             super(context, R.layout.voice_order_item ,orderItems);
             this.orderItems = orderItems;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            LayoutInflater i = LayoutInflater.from(getContext());
+            View row = i.inflate(R.layout.voice_order_item, parent, false);
+
+            OrderItem oi = orderItems.get(position);
+            ImageView pic = (ImageView) row.findViewById(R.id.voice_order_image);
+            pic.setImageResource(row.getResources().getIdentifier(oi.item.img, "drawable", "com.example.sagivo.myapplication"));
+            TextView title = (TextView) row.findViewById(R.id.voice_order_name);
+            title.setText(oi.item.name);
+            Random rnd = new Random();
+            title.setBackground(new ColorDrawable(Color.rgb(rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))));
+
+            Animation myFadeInAnimation = AnimationUtils.loadAnimation(row.getContext(), R.anim.image_alpha);
+            pic.startAnimation(myFadeInAnimation);
+
+            return row;
         }
 
         @Override
