@@ -22,16 +22,19 @@ import java.util.Iterator;
 import java.util.List;
 
 public class OrderFragment extends Fragment {
-    public static Integer Tab = 0;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.w("aaa", "init");
         View v = inflater.inflate(R.layout.fragment_order, container, false);
 
-        List<Friend> list_data = Friend.getAll(Tab);
+        Integer TabNumber = getArguments() != null ? getArguments().getInt("tabNum") : 1;
+
+        List<Friend> list_data = Friend.getAll(TabNumber);
         final ListView friends = (ListView) v.findViewById(R.id.friends);
 
         FlipSettings settings = new FlipSettings.Builder().defaultPage(1).build();
         friends.setAdapter(new FriendsAdapter(v.getContext(), list_data, settings) );
+        /*
         friends.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -39,8 +42,19 @@ public class OrderFragment extends Fragment {
                 Log.w("aaa", "clicked doo");
             }
         });
-
+        */
         return v;
+    }
+
+    static OrderFragment newInstance(int num) {
+        OrderFragment f = new OrderFragment();
+
+        // Supply num input as an argument.
+        Bundle args = new Bundle();
+        args.putInt("tabNum", num);
+        f.setArguments(args);
+
+        return f;
     }
 
     class FriendsAdapter extends BaseFlipAdapter<Friend> {
