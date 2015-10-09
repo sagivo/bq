@@ -2,7 +2,6 @@
 //package com.example.sagivo.myapplication;
 
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -14,14 +13,12 @@ import java.util.List;
 import java.util.Set;
 
 public class Lang {
-    public static void main(String[] args)
-    {
 
-        System.out.println("---start---");
+    public static void getItems(String req)
+    {
+        //String req = "Hello, can i please get a spicy burger, 2 chicken sandwich and 2 coke cold?";
 
         ArrayList<OrderItem> orders = new ArrayList<OrderItem>();
-
-        String req = "Hello, can i please get 2 burgers, triple chicken spicy sandwich and a cold coke?";
 
         String[] _ignore = new String[]{"hi", "hello", "how are you", "thank you", "can", "i", "a", "an", "get", "please", "and", "thanks", "bye" };
         HashSet<String> ignore= new HashSet<String>(Arrays.asList(_ignore));
@@ -41,13 +38,15 @@ public class Lang {
                 new Item("cheese cake", "", 6.99, "s", new String[]{"cheesecake"})
         };
 
+
+
         HashMap<String, Item> map = new HashMap<String, Item>();
         for(Item i: foodItems)
             for(String name : i.aka)
                 map.put(name, i);
 
         HashMap<String, Integer> nums = new HashMap<String, Integer>();
-        nums.put("one",1); nums.put("1",1); nums.put("single",1);
+        nums.put("one",1); nums.put("1",1); nums.put("single",1); nums.put("a",1);
         nums.put("two",2); nums.put("2",2); nums.put("double",2); nums.put("twice",2);
         nums.put("tree",3); nums.put("3",3); nums.put("triple",3);
         nums.put("four",4); nums.put("4",4);
@@ -70,15 +69,23 @@ public class Lang {
             Item item = map.get(arr[i]);
             if (item != null){
                 OrderItem oi = new OrderItem(item, 1, null);
+                // number -> extra -> food
+                // extra -> food //NUM
+                // food -> extra
+
                 //check before
-                if (i > 1){
-                    if (nums.get(arr[i-1])!=null) oi.quantity = nums.get(arr[i-1]);
-                    else if ( extras.contains(arr[i-1]) ) oi.extra = arr[i-1];
+                if (i > 0){
+                    if ( extras.contains(arr[i-1]) ) {
+                        oi.extra = arr[i-1];
+                        if (i > 1 && nums.get(arr[i-2])!=null) oi.quantity = nums.get(arr[i-2]);
+                    }
+                    else if (nums.get(arr[i-1])!=null) oi.quantity = nums.get(arr[i-1]);
                 }
+
                 //check after
                 if (i < arr.length - 1) {
-                    if ( oi.quantity == 1 && nums.get(arr[i+1])!=null) oi.quantity = nums.get(arr[i+1]);
-                    else if ( oi.extra == null && extras.contains(arr[i+1]) ) oi.extra = arr[i+1];
+                    //if ( oi.quantity == 1 && nums.get(arr[i+1])!=null) oi.quantity = nums.get(arr[i+1]);
+                    if ( oi.extra == null && extras.contains(arr[i+1]) ) oi.extra = arr[i+1];
                 }
 
 

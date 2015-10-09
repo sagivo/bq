@@ -22,10 +22,12 @@ import java.util.Iterator;
 import java.util.List;
 
 public class OrderFragment extends Fragment {
+    public static Integer Tab = 0;
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_order, container, false);
 
-        List<Friend> list_data = Friend.getAll();
+        List<Friend> list_data = Friend.getAll(Tab);
         final ListView friends = (ListView) v.findViewById(R.id.friends);
 
         FlipSettings settings = new FlipSettings.Builder().defaultPage(1).build();

@@ -64,14 +64,11 @@ public class OrderFragmentTabs extends Fragment{
 
         @Override
         public Fragment getItem(int position) {
-            pager.AllowSwipe = pager.getCurrentItem() != 2;
+            pager.AllowSwipe = false; // pager.getCurrentItem() != 2;
 
-            switch (position) {
-                case 0: return new HomeFragment();
-                case 1: return new HomeFragment();
-                case 2: return new OrderFragment();
-                default: return new OrderFragment();
-            }
+            OrderFragment o = new OrderFragment();
+            o.Tab = pager.getCurrentItem();
+            return o;
         }
 
         @Override
