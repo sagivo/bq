@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //set current fragment
-        VoiceOrderFragment fragment = new VoiceOrderFragment(); //SET DEFAULT SCREEN HERE
+        HomeFragment fragment = new HomeFragment(); //SET DEFAULT SCREEN HERE
         android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.replace(R.id.frame, fragment);
