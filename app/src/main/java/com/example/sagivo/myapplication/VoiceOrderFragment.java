@@ -120,7 +120,9 @@ public class VoiceOrderFragment extends Fragment {
             ImageView pic = (ImageView) row.findViewById(R.id.voice_order_image);
             pic.setImageResource(row.getResources().getIdentifier(oi.item.img, "drawable", "com.example.sagivo.myapplication"));
             TextView title = (TextView) row.findViewById(R.id.voice_order_name);
-            title.setText(oi.item.name);
+            title.setText(oi.item.name.toUpperCase());
+            TextView quantity = (TextView) row.findViewById(R.id.voice_order_quantity);
+            quantity.setText(Double.toString(oi.quantity));
             Random rnd = new Random();
             title.setBackground(new ColorDrawable(Color.rgb(rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))));
 

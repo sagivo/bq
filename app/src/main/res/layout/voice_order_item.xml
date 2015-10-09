@@ -12,6 +12,7 @@
             android:layout_width="fill_parent"
             android:layout_height="50dp" android:textSize="40sp"
             android:background="#5752b4"
+            android:alpha="0.4"
             android:gravity="center"
             android:textColor="#FFFFFF"
             android:text="WHOPPER"
@@ -25,21 +26,18 @@
 
         <ImageView
             android:id="@+id/voice_order_image"
-            android:layout_width="0dp"
-            android:layout_weight="0.7"
+            android:layout_width="250dp"
             android:layout_height="200dp"
-            android:src="@drawable/b8"
+            android:src="@drawable/c2"
             android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/voice_order_quantity"
-            android:layout_width="0dp"
-            android:layout_weight="0.3"
+            android:layout_width="fill_parent"
             android:layout_height="200dp"
-            android:textSize="200sp"
+            android:textSize="160sp"
             android:gravity="center"
-            android:text="2"
-            />
+            android:text="2" />
 
     </LinearLayout>
 
