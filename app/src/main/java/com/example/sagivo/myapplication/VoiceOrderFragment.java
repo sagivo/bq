@@ -21,6 +21,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.baoyz.swipemenulistview.SwipeMenu;
+import com.baoyz.swipemenulistview.SwipeMenuCreator;
+import com.baoyz.swipemenulistview.SwipeMenuItem;
+import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
 import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 
@@ -34,7 +38,6 @@ import java.util.Random;
 public class VoiceOrderFragment extends Fragment {
 
     private static final int SPEECH_REQUEST_CODE = 10;
-    TextView text_view;
     FloatingActionMenu actionMenu;
     View v;
     Button payBtn;
@@ -42,7 +45,9 @@ public class VoiceOrderFragment extends Fragment {
     public void generateList( String req ){
         ArrayList<OrderItem> orderItems = getItems(req);
         VoiceOrderAdapter adapter = new VoiceOrderAdapter(getActivity(), orderItems);
-        ListView list = (ListView)v.findViewById(R.id.voice_order_list_view);
+        SwipeMenuListView list = (SwipeMenuListView)v.findViewById(R.id.voice_order_list);
+        TextView voice_result= (TextView)v.findViewById(R.id.voice_result);
+        voice_result.setText(req);
         list.setAdapter(adapter);
         double total = 0;
         for(OrderItem oi:orderItems)
@@ -52,12 +57,51 @@ public class VoiceOrderFragment extends Fragment {
             payBtn.setText("$" + Double.toString(total) + " PAY");
             payBtn.setVisibility(View.VISIBLE);
         }
+
+        SwipeMenuCreator creator = new SwipeMenuCreator() {
+
+            @Override
+            public void create(SwipeMenu menu) {
+                // create "open" item
+                SwipeMenuItem openItem = new SwipeMenuItem(menu.getContext());
+                // set item background
+                openItem.setBackground(new ColorDrawable(Color.parseColor("#8D93FD")));
+                openItem.setWidth(300);
+                openItem.setTitle("XL");
+                //openItem.setIcon(android.R.drawable.btn_plus);
+                openItem.setTitleSize(18);
+                openItem.setTitleColor(Color.WHITE);
+                menu.addMenuItem(openItem);
+
+
+                // create "delete" item
+                SwipeMenuItem mapItem = new SwipeMenuItem(menu.getContext());
+                mapItem.setBackground(new ColorDrawable(Color.parseColor("#EF5929")));
+                mapItem.setWidth(300);
+                mapItem.setTitle("Remove");
+                mapItem.setTitleColor(Color.WHITE);
+                mapItem.setTitleSize(18);
+                //mapItem.setIcon(android.R.drawable.doll);
+                menu.addMenuItem(mapItem);
+
+                SwipeMenuItem deleteItem = new SwipeMenuItem(menu.getContext());
+                deleteItem.setBackground(new ColorDrawable(Color.parseColor("#EDD54B")));
+                deleteItem.setWidth(300);
+                deleteItem.setTitle("$5.99");
+                deleteItem.setTitleColor(Color.WHITE);
+                deleteItem.setTitleSize(18);
+                //deleteItem.setIcon(android.R.drawable.dollar);
+                menu.addMenuItem(deleteItem);
+
+            }
+        };
+        list.setMenuCreator(creator);
+
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_voice_order ,container,false);
 
-        text_view = (TextView)v.findViewById(R.id.voice_result);
 
         SubActionButton.Builder itemBuilder = new SubActionButton.Builder(this.getActivity());
         // repeat many times:
@@ -90,6 +134,7 @@ public class VoiceOrderFragment extends Fragment {
         payBtn.setVisibility(View.INVISIBLE);
 
         //generateList("Hi, can i get one hamburger, 2 chicken sandwich, 3 spicy fries, a wrap and cold cola?");
+        //generateList("hello, can i have a wrap, sprite and two apple pie please?");
 
         return v;
     }
@@ -135,7 +180,7 @@ public class VoiceOrderFragment extends Fragment {
             ImageView pic = (ImageView) row.findViewById(R.id.voice_order_image);
             pic.setImageResource(row.getResources().getIdentifier(oi.item.img, "drawable", "com.example.sagivo.myapplication"));
             TextView title = (TextView) row.findViewById(R.id.voice_order_name);
-            title.setText(oi.item.name.toUpperCase());
+            title.setText(oi.item.name.toUpperCase() + ( (oi.extra != null) ? " (" + oi.extra + ")" : ""  ));
             TextView quantity = (TextView) row.findViewById(R.id.voice_order_quantity);
             quantity.setText(Double.toString(oi.quantity));
             Random rnd = new Random();
@@ -183,7 +228,7 @@ public class VoiceOrderFragment extends Fragment {
                 new Item("sprite", "d6", 3.99, "d", new String[]{}),
 
                 new Item("fries", "f1", 1.99, "s", new String[]{"fries"}),
-                new Item("apple pie", "apple_pie", 2.99, "s", new String[]{"pie"}),
+                new Item("apple pie", "apple_pie", 2.99, "s", new String[]{"apple"}),
                 new Item("cheese cake", "cookies", 6.99, "s", new String[]{"cheesecake"})
         };
 

@@ -19,11 +19,19 @@
             android:text="Place your order..."
             android:id="@+id/voice_result" />
 
-        <ListView
-            android:id="@+id/voice_order_list_view"
+        <com.baoyz.swipemenulistview.SwipeMenuListView
+            android:id="@+id/voice_order_list"
+            android:tag="voice_order_foo_list"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_below="@+id/voice_result"
+             />
+
+        <!--<ListView-->
+            <!--android:id="@+id/voice_order_list_view"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/voice_result"-->
             />
 
         <Button
