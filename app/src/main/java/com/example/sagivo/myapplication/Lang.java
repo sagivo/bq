@@ -21,13 +21,16 @@ public class Lang {
 
         ArrayList<OrderItem> orders = new ArrayList<OrderItem>();
 
-        String req = "Hello, can i please get one burger, 2 chicken sandwich and an apple pie?";
+        String req = "Hello, can i please get 2 burgers, triple chicken spicy sandwich and a cold coke?";
 
         String[] _ignore = new String[]{"hi", "hello", "how are you", "thank you", "can", "i", "a", "an", "get", "please", "and", "thanks", "bye" };
-        Set<String> ignore= new HashSet<String>(Arrays.asList(_ignore));
+        HashSet<String> ignore= new HashSet<String>(Arrays.asList(_ignore));
+
+        String[] _extra = new String[]{ "spicy", "hot", "cold", "neat", "neet" };
+        ArrayList<String> extras= new ArrayList<String>(Arrays.asList(_extra));
 
         Item[] foodItems = {
-                new Item("burger", "", 5.99, "b", new String[]{"beef burger", "hamburger", "whopper"}),
+                new Item("burger", "", 5.99, "b", new String[]{"beef burger", "hamburger", "whopper", "burgers"}),
                 new Item("chicken sandwich", "", 4.99, "b", new String[]{"chicken burger", "chicken"}),
 
                 new Item("coke", "", 2.99, "d", new String[]{"cola", "coka cola", "coce", "pepsi"}),
@@ -67,9 +70,18 @@ public class Lang {
             Item item = map.get(arr[i]);
             if (item != null){
                 OrderItem oi = new OrderItem(item, 1, null);
-                //look for quantity
-                Integer quantity = nums.get(arr[i-1]);
-                if (quantity!=null) oi.quantity = quantity;
+                //check before
+                if (i > 1){
+                    if (nums.get(arr[i-1])!=null) oi.quantity = nums.get(arr[i-1]);
+                    else if ( extras.contains(arr[i-1]) ) oi.extra = arr[i-1];
+                }
+                //check after
+                if (i < arr.length - 1) {
+                    if ( oi.quantity == 1 && nums.get(arr[i+1])!=null) oi.quantity = nums.get(arr[i+1]);
+                    else if ( oi.extra == null && extras.contains(arr[i+1]) ) oi.extra = arr[i+1];
+                }
+
+
 
                 orderItems.add(oi);
             }
