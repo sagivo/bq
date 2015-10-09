@@ -67,7 +67,7 @@ public class OrderFragmentTabs extends Fragment{
             pager.AllowSwipe = false; // pager.getCurrentItem() != 2;
 
             OrderFragment o = new OrderFragment();
-            o.Tab = pager.getCurrentItem();
+            o.Tab = position;
             return o;
         }
 

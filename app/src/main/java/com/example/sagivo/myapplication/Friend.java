@@ -43,13 +43,20 @@ public class Friend {
         if (tab == 0) {
             friends.add(new Friend(R.drawable.b1, "WHOPPER", R.color.sienna, "$6.99", "1400 calories", "Spicy", "Cat Meet", "Not That Good"));
             friends.add(new Friend(R.drawable.b2, "Fried Chicken", R.color.pink, "$6.99", "1400 calories", "Spicy", "Cat Meet", "Yummy"));
-            friends.add(new Friend(R.drawable.b3, "KATE", R.color.green, "Sales", "Pets", "Skiing", "Hairstyles", "Сoffee"));
-            friends.add(new Friend(R.drawable.b4, "Fried Chicken", R.color.pink, "$6.99", "1400 calories", "Spicy", "Cat Meet", "Yummy"));
+            friends.add(new Friend(R.drawable.b3, "Fried Chicken", R.color.pink, "$6.99", "1400 calories", "Spicy", "Cat Meet", "Yummy"));
+            friends.add(new Friend(R.drawable.b2, "YALANTIS", R.color.purple, "Android", "IOS", "Application", "Development", "Company"));
             friends.add(new Friend(R.drawable.b5, "DARIA", R.color.orange, "Design", "Fitness", "Healthcare", "UI/UX", "Chatting"));
             friends.add(new Friend(R.drawable.b6, "KIRILL", R.color.saffron, "Development", "Android", "Healthcare", "Sport", "Rock Music"));
             friends.add(new Friend(R.drawable.b7, "JULIA", R.color.green, "Cinema", "Music", "Tatoo", "Animals", "Management"));
-            friends.add(new Friend(R.drawable.b2, "YALANTIS", R.color.purple, "Android", "IOS", "Application", "Development", "Company"));
-        } else{
+            friends.add(new Friend(R.drawable.b4, "Fried Chicken", R.color.pink, "$6.99", "1400 calories", "Spicy", "Cat Meet", "Yummy"));
+        } else if (tab == 1){
+            friends.add(new Friend(R.drawable.f1, "WHOPPER", R.color.sienna, "$6.99", "1400 calories", "Spicy", "Cat Meet", "Not That Good"));
+            friends.add(new Friend(R.drawable.f2, "IRENE", R.color.saffron, "Travelling", "Flights", "Books", "Painting", "Design"));
+            friends.add(new Friend(R.drawable.f3, "KATE", R.color.green, "Sales", "Pets", "Skiing", "Hairstyles", "Сoffee"));
+            friends.add(new Friend(R.drawable.f4, "Orange Jouice", R.color.pink, "$2.39", "10 calories", "Cold", "Cool", "Healthy(?)"));
+            friends.add(new Friend(R.drawable.f5, "DARIA", R.color.orange, "Design", "Fitness", "Healthcare", "UI/UX", "Chatting"));
+            friends.add(new Friend(R.drawable.f6, "KIRILL", R.color.saffron, "Development", "Android", "Healthcare", "Sport", "Rock Music"));
+        } else {
             friends.add(new Friend(R.drawable.d1, "WHOPPER", R.color.sienna, "$6.99", "1400 calories", "Spicy", "Cat Meet", "Not That Good"));
             friends.add(new Friend(R.drawable.d2, "IRENE", R.color.saffron, "Travelling", "Flights", "Books", "Painting", "Design"));
             friends.add(new Friend(R.drawable.d3, "KATE", R.color.green, "Sales", "Pets", "Skiing", "Hairstyles", "Сoffee"));
