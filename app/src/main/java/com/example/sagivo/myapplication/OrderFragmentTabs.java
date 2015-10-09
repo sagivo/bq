@@ -37,7 +37,6 @@ public class OrderFragmentTabs extends Fragment{
             // This method will be invoked when a new page becomes selected.
             @Override
             public void onPageSelected(int position) {
-                Log.w("aaa2", "selected");
                 //Toast.makeText(OrderFragmentTabs.this, "Selected page position: " + position, Toast.LENGTH_SHORT).show();
             }
 
@@ -51,7 +50,6 @@ public class OrderFragmentTabs extends Fragment{
             // SCROLL_STATE_IDLE, SCROLL_STATE_DRAGGING, SCROLL_STATE_SETTLING
             @Override
             public void onPageScrollStateChanged(int state) {
-                Log.w("aaa", "statechange");
                 // Code goes here
             }
         });
@@ -87,7 +85,7 @@ public class OrderFragmentTabs extends Fragment{
                 case 2:
                     return "DRINK";
                 default:
-                    return "OTHERS";
+                    return "EXTRA";
 
             }
         }
