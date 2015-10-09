@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -35,12 +37,21 @@ public class VoiceOrderFragment extends Fragment {
     TextView text_view;
     FloatingActionMenu actionMenu;
     View v;
+    Button payBtn;
 
     public void generateList( String req ){
         ArrayList<OrderItem> orderItems = getItems(req);
         VoiceOrderAdapter adapter = new VoiceOrderAdapter(getActivity(), orderItems);
         ListView list = (ListView)v.findViewById(R.id.voice_order_list_view);
         list.setAdapter(adapter);
+        double total = 0;
+        for(OrderItem oi:orderItems)
+            total += oi.item.price;
+
+        if (orderItems.size() > 0){
+            payBtn.setText("$" + Double.toString(total) + " PAY");
+            payBtn.setVisibility(View.VISIBLE);
+        }
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -75,7 +86,10 @@ public class VoiceOrderFragment extends Fragment {
                 .attachTo(v.findViewById(R.id.action_fab)).build();
 
 
-        generateList("Hi, can i get one hamburger, 2 chicken sandwich and cold cola?");
+        payBtn = (Button)v.findViewById(R.id.voice_order_pay);
+        payBtn.setVisibility(View.INVISIBLE);
+
+        //generateList("Hi, can i get one hamburger, 2 chicken sandwich, 3 spicy fries, a wrap and cold cola?");
 
         return v;
     }
@@ -167,7 +181,7 @@ public class VoiceOrderFragment extends Fragment {
                 new Item("coke", "d6", 2.99, "d", new String[]{"cola", "coka cola", "coce", "pepsi"}),
                 new Item("sprite", "d6", 3.99, "d", new String[]{}),
 
-                new Item("fries", "f1", 1.99, "s", new String[]{"pie"}),
+                new Item("fries", "f1", 1.99, "s", new String[]{"fries"}),
                 new Item("apple pie", "apple_pie", 2.99, "s", new String[]{"pie"}),
                 new Item("cheese cake", "cookies", 6.99, "s", new String[]{"cheesecake"})
         };

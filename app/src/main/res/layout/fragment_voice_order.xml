@@ -6,17 +6,49 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:fitsSystemWindows="true">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Place your order..."
-        android:id="@+id/voice_result" />
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        >
 
-    <ListView
-        android:id="@+id/voice_order_list_view"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"></ListView>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Place your order..."
+            android:id="@+id/voice_result" />
+
+        <ListView
+            android:id="@+id/voice_order_list_view"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/voice_result"
+            />
+
+        <Button
+            android:id="@+id/voice_order_pay"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:text="$42.99 Pay"
+            android:textSize="30sp"
+            android:textColor="#FFFFFF"
+            android:alpha="0.9"
+            android:background="#cd76f2"
+            android:layout_above="@+id/voice_order_imgHACK"
+            />
+
+        <ImageView
+            android:id="@+id/voice_order_imgHACK"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+             />
+
+
+
+    </RelativeLayout>
 
 
     <android.support.design.widget.FloatingActionButton android:id="@+id/action_fab"
