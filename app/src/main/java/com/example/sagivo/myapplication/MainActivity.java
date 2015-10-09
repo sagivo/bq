@@ -4,6 +4,7 @@ import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -81,38 +82,29 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        FragmentManager fragmentManager = getFragmentManager();
+        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+        Fragment fragment = new ProfileFragment();
 
         if (id == R.id.nav_camara) {
-            ProfileFragment fragment = new ProfileFragment();
-            Bundle args = new Bundle();
-            args.putInt("foo", 1);
-            fragment.setArguments(args);
-            fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
-
+            fragment = new ProfileFragment();
             Toast.makeText(MainActivity.this, "foo", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_gallery) {
-            OrderFragmentTabs fragment = new OrderFragmentTabs();
-            android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
-            fragmentTransaction.replace(R.id.frame, fragment);
-            fragmentTransaction.commit();
+            fragment = new OrderFragmentTabs();
         } else if (id == R.id.nav_map) {
-            StoreListFragment fragment = new StoreListFragment();
-
-            android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
-            fragmentTransaction.replace(R.id.frame, fragment);
-            fragmentTransaction.commit();
-
-
+            fragment = new StoreListFragment();
         } else if (id == R.id.nav_manage) {
-
+            //Bundle args = new Bundle();
+            //args.putInt("foo", 1);
+            //fragment.setArguments(args);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
 
         }
+
+        android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.replace(R.id.frame, fragment);
+        fragmentTransaction.commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
