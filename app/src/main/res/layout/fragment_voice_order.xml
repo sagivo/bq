@@ -13,6 +13,13 @@
         android:text="Place your order..."
         android:id="@+id/voice_result" />
 
+    <LinearLayout
+        android:id="@+id/list_voice_order"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ></LinearLayout>
+
     <android.support.design.widget.FloatingActionButton android:id="@+id/action_fab"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:layout_gravity="bottom|end" android:layout_margin="@dimen/fab_margin"

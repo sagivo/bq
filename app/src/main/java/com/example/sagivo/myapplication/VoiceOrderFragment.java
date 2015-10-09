@@ -1,6 +1,7 @@
 package com.example.sagivo.myapplication;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,6 +28,11 @@ public class VoiceOrderFragment extends Fragment {
     private static final int SPEECH_REQUEST_CODE = 10;
     TextView text_view;
     FloatingActionMenu actionMenu;
+
+    public void generateList( String req ){
+        ArrayList<OrderItem> oi = getItems(req);
+
+    }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_voice_order ,container,false);
@@ -58,7 +65,9 @@ public class VoiceOrderFragment extends Fragment {
                 .addSubActionView(button2)
                 .attachTo(v.findViewById(R.id.action_fab)).build();
 
-        //recordVoice();
+
+        generateList("Hi, can i get one hamburger, 2 chicken sandwich and cold cola?");
+
         return v;
     }
 
@@ -71,14 +80,7 @@ public class VoiceOrderFragment extends Fragment {
         if (requestCode == SPEECH_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             List<String> results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             String spokenText = results.get(0);
-
-            ArrayList<OrderItem> orderItems = getItems(spokenText);
-            String s = "";
-            for(OrderItem oi:orderItems)
-                s+= oi.toString();
-
-            text_view.setText(s);
-
+            generateList(spokenText);
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -89,6 +91,28 @@ public class VoiceOrderFragment extends Fragment {
         intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Place Your Order...");
         // Start the activity, the intent will be populated with the speech text
         startActivityForResult(intent, SPEECH_REQUEST_CODE);
+    }
+
+    class VoiceOrderAdapter extends ArrayAdapter<OrderItem> {
+
+        ArrayList<OrderItem> orderItems;
+
+        public VoiceOrderAdapter(Context context, ArrayList<OrderItem> orderItems) {
+            super(context, R.layout.voice_order_item ,orderItems);
+            this.orderItems = orderItems;
+        }
+
+        @Override
+        public int getViewTypeCount() {
+            // menu type count
+            return orderItems.size();
+        }
+
+        @Override
+        public int getItemViewType(int position) {
+            // current menu type
+            return position;
+        }
     }
 
     //---------------LANG
@@ -106,15 +130,16 @@ public class VoiceOrderFragment extends Fragment {
         ArrayList<String> extras= new ArrayList<String>(Arrays.asList(_extra));
 
         Item[] foodItems = {
-                new Item("burger", "", 5.99, "b", new String[]{"beef burger", "hamburger", "whopper", "burgers"}),
-                new Item("chicken sandwich", "", 4.99, "b", new String[]{"chicken burger", "chicken"}),
+                new Item("burger", "b6", 5.99, "b", new String[]{"beef burger", "hamburger", "whopper", "burgers"}),
+                new Item("chicken sandwich", "b2", 4.99, "b", new String[]{"chicken burger", "chicken"}),
+                new Item("wrap", "wrap", 4.50, "b", new String[]{"burrito"}),
 
-                new Item("coke", "", 2.99, "d", new String[]{"cola", "coka cola", "coce", "pepsi"}),
-                new Item("sprite", "", 3.99, "d", new String[]{}),
+                new Item("coke", "d6", 2.99, "d", new String[]{"cola", "coka cola", "coce", "pepsi"}),
+                new Item("sprite", "d6", 3.99, "d", new String[]{}),
 
-                new Item("fries", "", 1.99, "s", new String[]{"pie"}),
-                new Item("apple pie", "", 2.99, "s", new String[]{"pie"}),
-                new Item("cheese cake", "", 6.99, "s", new String[]{"cheesecake"})
+                new Item("fries", "f1", 1.99, "s", new String[]{"pie"}),
+                new Item("apple pie", "apple_pie", 2.99, "s", new String[]{"pie"}),
+                new Item("cheese cake", "cookies", 6.99, "s", new String[]{"cheesecake"})
         };
 
 
